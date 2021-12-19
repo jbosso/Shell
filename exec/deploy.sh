@@ -1,6 +1,6 @@
 #!/bin/bash
 
-uri='ssh -i /var/lib/jenkins/id_rsa.pem ubuntu@52.67.249.96'
+uri='ssh -i /var/lib/jenkins/.ssh/id_rsa ubuntu@52.67.249.96'
 pwd
 
 export TF_VAR_vpcId=$($uri 'sudo aws --region sa-east-1 ec2 describe-vpcs --filters Name=tag:Name,Values=vpc-Team4-JB --query "Vpcs[*].VpcId" --output text')
