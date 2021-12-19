@@ -31,8 +31,8 @@ echo "[client]" > dumpsql/.my.cnf
 echo "user=root" >> dumpsql/.my.cnf
 echo "password=$DB_PASSWORD" >> dumpsql/.my.cnf
 
-echo "Executando ansible ::::: [ ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key /var/lib/jenkins/.ssh/id_rsa]"
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key /var/lib/jenkins/.ssh/id_rsa
+#echo "Executando ansible ::::: [ ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key /var/lib/jenkins/.ssh/id_rsa]"
+#ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key /var/lib/jenkins/.ssh/id_rsa
 
 echo "Executando ansible ::::: [ ansible-playbook -i hosts provisionarDataBase.yml -u ubuntu --private-key /var/lib/jenkins/.ssh/id_rsa]"
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts provisionarDataBase.yml -u ubuntu --private-key /var/lib/jenkins/.ssh/id_rsa
