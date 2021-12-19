@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: container-pod-javadb-dev
-          image: jb/projetofinal-spr-web:latest
+          image: jenkins/projetofinal-spr-web:latest
           env:
             - name: USER
               valueFrom:
