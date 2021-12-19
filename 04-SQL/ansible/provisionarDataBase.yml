@@ -1,7 +1,8 @@
 - hosts: all
   environment:
     PASSWORD: "{{ lookup('env', 'DB_PASSWORD') }}"
-       
+   
+  tasks:
     - name: "Copia Arquivo Dump SQL"
       copy:
         src: "dumpsql/dumpsql.sql"
