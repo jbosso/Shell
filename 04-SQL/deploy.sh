@@ -21,8 +21,8 @@ terraform apply -auto-approve
 echo "Aguardando criação de maquinas ..."
 sleep 10 # 10 segundos
 
-echo "[mysql-teste]" > ../ansible/hosts
-echo "$(terraform output | grep mysql-teste | awk '{print $2;exit}' | sed -e "s/\",//g")" >> ../ansible/hosts
+echo "[mysql_instance_dev]" > ../ansible/hosts
+echo "$(terraform output | grep mysql_instance_dev | awk '{print $2;exit}' | sed -e "s/\",//g")" >> ../ansible/hosts
 
 sleep 10 # 10 segundos
 cd ../ansible
