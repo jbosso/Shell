@@ -1,16 +1,32 @@
 - hosts: all
   environment:
-    PASSWORD: "{{ lookup('env', 'DB_PASSWORD') }}"
+    PASSWORD: "root"
    
   tasks:
+    - name: "Cria o banco de dados MySQL"
+      become: yes
+      mysql_db:
+        name: SpringWebYoutubeTest
+        login_user: "root"
+        login_password: "root"
+        state: present
+        
     - name: "Copia Arquivo Dump SQL"
       copy:
         src: "dumpsql/dumpsql.sql"
         dest: "/tmp/dumpsql.sql"
-   
-    - name: "Alterar o acesso"
-      become: yes
-      shell: "mysql -u root -p\"{{ lookup('env', 'DB_PASSWORD') }}\" -e \"CREATE USER 'root'@'%' IDENTIFIED BY '{{ lookup('env', 'DB_PASSWORD') }}'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;\""
     
-    - name: "Copia Dump para MySQL"
-      shell: "mysql -u root -p\"{{ lookup('env', 'DB_PASSWORD') }}\" < /tmp/dumpsql.sql"
+    - name: "Restore database"
+      mysql_db:
+        name: SpringWebYoutube
+        state: import
+        target: /tmp/dumpsql.sql
+        login_user: root
+        login_password: root
+        state: present
+
+    - name: "Restarta serviço do mysql"
+      become: yes
+      service:
+        name: mysql
+        state: restarted
