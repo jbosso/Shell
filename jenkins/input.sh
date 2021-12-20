@@ -1,4 +1,5 @@
 #!/bin/bash
 DB_PASSWORD='root'
 
-echo DB_PASSWORD=$DB_PASSWORD
+env.DB_PASSWORD=bat(returnStdout: true, 
+script: '''  @echo off echo '$DB_PASSWORD' ''').trim()
